@@ -1,54 +1,29 @@
 import { Webhook } from 'svix';
-import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createServiceRoleSupabase } from '/Users/matiasburgos/Repositorios/v-0.1/src/lib/supabase/server';
 
-const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET || '';
-
-export async function POST(req: NextRequest) {
-  const payload = await req.text();
-  const headers = {
-    'svix-id': req.headers.get('svix-id') || '',
-    'svix-timestamp': req.headers.get('svix-timestamp') || '',
-    'svix-signature': req.headers.get('svix-signature') || '',
-  };
-
-  const wh = new Webhook(WEBHOOK_SECRET);
-
-  let evt;
-  try {
-    evt = wh.verify(payload, headers);
-  } catch (err) {
-    console.error('Error verifying webhook:', err);
-    return NextResponse.json({ error: 'Invalid webhook signature' }, { status: 400 });
-  }
-
-  const eventType = evt.type;
+export async function POST(req: Request) {
+  const payload = await req.json();
+  const eventType = payload.type;
 
   if (eventType === 'user.created' || eventType === 'user.updated') {
-    const user = evt.data;
-    const publicMetadata = user.public_metadata || {};
-    const role = publicMetadata.role || 'member';
-    const inmobiliariaId = publicMetadata.inmobiliaria_id || null;
+    const { id, email_addresses, public_metadata } = payload.data;
+    const email = email_addresses[0].email_address;
+    const inmobiliaria_id = public_metadata.inmobiliaria_id;
 
-    const { data, error } = await supabase
+    const supabase = createServiceRoleSupabase();
+
+    const { error } = await supabase
       .from('usuarios_saas')
       .upsert({
-        clerk_user_id: user.id,
-        email: user.email_addresses[0]?.email_address || 'sin-email',
-        full_name: `${user.first_name || ''} ${user.last_name || ''}`.trim(),
-        role: role,
-        inmobiliaria_id: inmobiliariaId,
-        creado_en: new Date().toISOString()
-      }, { onConflict: 'clerk_user_id' })
-      .select('*');
+        clerk_id: id,
+        email,
+        rol: public_metadata.rol,
+        inmobiliaria_id,
+        ultima_actualizacion: new Date().toISOString()
+      });
 
-    if (error) {
-      console.error('Error de Supabase:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    console.log('Usuario actualizado en Supabase:', data);
+    if (error) console.error('Error syncing user:', error);
   }
 
-  return NextResponse.json({ status: 'success' }, { status: 200 });
+  return new Response('OK', { status: 200 });
 }
