@@ -1,0 +1,4 @@
+{
+  "/not-found": "app/not-found.js",
+  "/api/webhooks/clerk/route": "app/api/webhooks/clerk/route.js"
+}

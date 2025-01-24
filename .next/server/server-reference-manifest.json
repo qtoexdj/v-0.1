@@ -1,0 +1,38 @@
+{
+  "node": {
+    "5984b95f46e75777e763bfa637a242dccec163f9": {
+      "workers": {
+        "app/not-found": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmatiasburgos%2FRepositorios%2Fv-0.1%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%22deleteKeylessAction%22%2C%22createOrReadKeylessAction%22%2C%22syncKeylessConfigAction%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/not-found": "rsc"
+      }
+    },
+    "66866fba0a96aba4ab746474707ec38e05772143": {
+      "workers": {
+        "app/not-found": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmatiasburgos%2FRepositorios%2Fv-0.1%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%22deleteKeylessAction%22%2C%22createOrReadKeylessAction%22%2C%22syncKeylessConfigAction%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/not-found": "rsc"
+      }
+    },
+    "962d035f662e6f186683e6a186e11a4ee4fb5921": {
+      "workers": {
+        "app/not-found": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmatiasburgos%2FRepositorios%2Fv-0.1%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%22deleteKeylessAction%22%2C%22createOrReadKeylessAction%22%2C%22syncKeylessConfigAction%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/not-found": "rsc"
+      }
+    },
+    "5957693beedb1490120fd8e5c5282c9203091c89": {
+      "workers": {
+        "app/not-found": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmatiasburgos%2FRepositorios%2Fv-0.1%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%22invalidateCacheAction%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/not-found": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "c447yLIzzIvG2ipkFa5m0MXDVS2LpIfOO8Chkwn9D+w="
+}
