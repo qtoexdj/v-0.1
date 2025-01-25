@@ -1,5 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs'
-    import './globals.css'
+import { esES } from '@clerk/localizations'
+import './globals.css'
 
     export default function RootLayout({
       children,
@@ -8,11 +9,12 @@ import { ClerkProvider } from '@clerk/nextjs'
     }) {
       return (
         <ClerkProvider
-          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ?? ''}
           signInUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL}
           signUpUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
           afterSignInUrl={process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL}
           afterSignUpUrl={process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
+          localization={esES}
         >
           <html lang="es">
             <body>

@@ -3,12 +3,14 @@
       "version": "0.1.0",
       "private": true,
       "scripts": {
-            "dev": "next dev",
-            "build": "next build",
-            "start": "next start",
+        "dev": "next dev -p 3002",
+        "build": "next build",
+        "start": "node --no-deprecation ./node_modules/next/dist/bin/next start -p 3002",
+        "kill-ports": "kill -9 $(lsof -t -i :3000-3002) 2>/dev/null || true",
             "lint": "next lint"
       },
       "dependencies": {
+            "@clerk/localizations": "^3.10.0",
             "@clerk/nextjs": "^6.10.2",
             "@supabase/ssr": "^0.5.2",
             "@supabase/supabase-js": "^2.48.1",
@@ -18,7 +20,8 @@
             "svix": "^1.45.1"
       },
       "devDependencies": {
-            "@types/react": "19.0.8",
-            "typescript": "5.7.3"
+            "@types/react": "^19.0.8",
+            "@types/react-dom": "^19.0.3",
+            "typescript": "^5.7.3"
       }
 }

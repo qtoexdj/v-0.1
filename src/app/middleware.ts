@@ -4,7 +4,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 const protectedRoutes = createRouteMatcher([
   '/admin/(.*)',
   '/jefe/(.*)',
-  '/member/(.*)'
+  '/member/(.*)',
+  '/((?!auth).*)'  // Excluir rutas de autenticación
 ]);
 
 export default clerkMiddleware(async (auth, req: NextRequest) => {
